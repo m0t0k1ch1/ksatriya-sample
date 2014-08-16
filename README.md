@@ -1,7 +1,7 @@
 ksatriya-sample
 ===============
 
-a sample web application, built with [ksatriya](https://github.com/m0t0k1ch1/ksatriya)
+a sample web application built with [ksatriya](https://github.com/m0t0k1ch1/ksatriya)
 
 ## Run
 
@@ -11,7 +11,7 @@ $ go build github.com/m0t0k1ch1/ksatriya-sample
 $ ./ksatriya-sample
 ```
 
-If you want to restart the application gracefully, use [go-server-starter-listenr](https://github.com/lestrrat/go-server-starter-listener).
+Using [Server::Starter](http://search.cpan.org/~kazuho/Server-Starter-0.17/lib/Server/Starter.pm), you can restart the application gracefully.
 
 ``` sh
 $ start_server --port 8080 -- ./ksatriya-sample
