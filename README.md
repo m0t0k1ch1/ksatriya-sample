@@ -7,7 +7,7 @@ a sample web application built with [ksatriya](https://github.com/m0t0k1ch1/ksat
 
 ``` sh
 $ go get github.com/m0t0k1ch1/ksatriya-sample
-$ go build github.com/m0t0k1ch1/ksatriya-sample $GOPATH/github.com/m0t0k1ch1/ksatriya-sample/run
+$ go build github.com/m0t0k1ch1/ksatriya-sample $GOPATH/src/github.com/m0t0k1ch1/ksatriya-sample/run
 $ $GOPATH/github.com/m0t0k1ch1/ksatriya-sample/run
 ```
 
