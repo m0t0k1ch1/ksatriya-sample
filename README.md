@@ -9,7 +9,7 @@ a sample web application built with [ksatriya](https://github.com/m0t0k1ch1/ksat
 $ go get github.com/m0t0k1ch1/ksatriya-sample
 $ cd $GOPATH/src/github.com/m0t0k1ch1/ksatriya-sample
 $ go build
-$ ./ksatriya_sample
+$ ./ksatriya-sample
 ```
 
 Using [Server::Starter](http://search.cpan.org/~kazuho/Server-Starter-0.17/lib/Server/Starter.pm), you can restart the application gracefully.
