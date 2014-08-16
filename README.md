@@ -3,7 +3,7 @@ ksatriya-sample
 
 a sample web application built with [ksatriya](https://github.com/m0t0k1ch1/ksatriya)
 
-## Run
+## Build & Run
 
 ``` sh
 $ go get github.com/m0t0k1ch1/ksatriya-sample
