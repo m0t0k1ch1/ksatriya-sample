@@ -9,21 +9,9 @@ import (
 	"github.com/m0t0k1ch1/ksatriya"
 )
 
-func Index(c *ksatriya.Context) {
-	c.RenderHTML(http.StatusOK, "index", nil)
-}
-
-func User(c *ksatriya.Context) {
-	name := c.Param("name")
-	c.RenderHTML(http.StatusOK, "user", ksatriya.RenderData{
-		"name": name,
-	})
-}
-
 func main() {
 	k := ksatriya.New()
-	k.GET("/", Index)
-	k.GET("/user/:name", User)
+	k.RegisterController(NewController())
 
 	n := negroni.Classic()
 	n.UseHandler(k)
