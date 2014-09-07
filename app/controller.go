@@ -1,4 +1,4 @@
-package main
+package ksatriyasample
 
 import (
 	"net/http"
@@ -23,11 +23,12 @@ func NewController() *Controller {
 }
 
 func (c *Controller) Before(ctx *ksatriya.Context) {
+	ctx.SetTmplDirPath("app/view")
 	ctx.SetBaseTmplPath("layout.html")
 }
 
 func (c *Controller) After(ctx *ksatriya.Context) {
-	ctx.SetRenderArg("title", "ksatriya-sample")
+	ctx.RenderArgs["title"] = "ksatriya-sample"
 }
 
 func (c *Controller) Index(ctx *ksatriya.Context) {
