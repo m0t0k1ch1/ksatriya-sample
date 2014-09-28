@@ -22,20 +22,20 @@ func NewController() *Controller {
 	return c
 }
 
-func (c *Controller) Before(ctx *ksatriya.Context) {
+func (c *Controller) Before(ctx ksatriya.Ctx) {
 	ctx.SetTmplDirPath("app/view")
 	ctx.SetBaseTmplPath("layout.html")
 }
 
-func (c *Controller) After(ctx *ksatriya.Context) {
-	ctx.RenderArgs["title"] = "ksatriya-sample"
+func (c *Controller) After(ctx ksatriya.Ctx) {
+	ctx.SetRenderArg("title", "ksatriya-sample")
 }
 
-func (c *Controller) Index(ctx *ksatriya.Context) {
+func (c *Controller) Index(ctx ksatriya.Ctx) {
 	ctx.HTML(http.StatusOK, "index.html", nil)
 }
 
-func (c *Controller) User(ctx *ksatriya.Context) {
+func (c *Controller) User(ctx ksatriya.Ctx) {
 	name := ctx.Param("name")
 	ctx.HTML(http.StatusOK, "user.html", ksatriya.RenderArgs{
 		"name": name,
