@@ -18,13 +18,16 @@ func NewController() *Controller {
 
 	c.GET("/", c.Index)
 	c.GET("/user/:name", c.User)
+	c.GET("/text", c.Text)
+	c.GET("/json", c.JSON)
+	c.GET("/redirect", c.Redirect)
 
 	return c
 }
 
 func (c *Controller) Before(ctx ksatriya.Ctx) {
-	ctx.SetTmplDirPath("app/view")
-	ctx.SetBaseTmplPath("layout.html")
+	ctx.View().SetTmplDirPath("app/view")
+	ctx.View().SetBaseTmplPath("layout.html")
 }
 
 func (c *Controller) After(ctx ksatriya.Ctx) {
@@ -40,4 +43,18 @@ func (c *Controller) User(ctx ksatriya.Ctx) {
 	ctx.HTML(http.StatusOK, "user.html", ksatriya.RenderArgs{
 		"name": name,
 	})
+}
+
+func (c *Controller) Text(ctx ksatriya.Ctx) {
+	ctx.Text(http.StatusOK, "sample text")
+}
+
+func (c *Controller) JSON(ctx ksatriya.Ctx) {
+	ctx.JSON(http.StatusOK, map[string]string{
+		"key": "value",
+	})
+}
+
+func (c *Controller) Redirect(ctx ksatriya.Ctx) {
+	ctx.Redirect("/")
 }
