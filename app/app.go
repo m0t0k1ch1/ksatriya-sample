@@ -6,10 +6,10 @@ import (
 )
 
 func NewApp() *negroni.Negroni {
+	n := negroni.Classic()
+
 	k := ksatriya.New()
 	k.RegisterController(NewController())
-
-	n := negroni.Classic()
 	n.UseHandler(k)
 
 	return n
