@@ -10,22 +10,8 @@ type Controller struct {
 	*ksatriya.Controller
 }
 
-func NewController() *Controller {
-	c := &Controller{ksatriya.NewController()}
-
-	c.AddBeforeFilter(c.Before)
-	c.GET("/", c.Index)
-	c.GET("/user/:name", c.User)
-	c.GET("/text", c.Text)
-	c.GET("/json", c.JSON)
-	c.GET("/redirect", c.Redirect)
-	c.AddAfterFilter(c.After)
-
-	return c
-}
-
 func (c *Controller) Before(ctx *ksatriya.Context) {
-	if ctx.Request.URL.Path == "/redirect" {
+	if ctx.Request().URL.Path == "/redirect" {
 		ctx.Redirect("/")
 	}
 }
@@ -54,7 +40,24 @@ func (c *Controller) JSON(ctx *ksatriya.Context) {
 func (c *Controller) Redirect(ctx *ksatriya.Context) {}
 
 func (c *Controller) After(ctx *ksatriya.Context) {
-	ctx.SetTmplDirPath("app/view")
-	ctx.SetBaseTmplPath("layout.html")
-	ctx.SetRenderArg("title", "ksatriya-sample")
+	v := ctx.View()
+	v.SetRenderArg("title", "ksatriya-sample")
+
+	conf := v.RenderConfig()
+	conf.SetTmplDirPath("app/view")
+	conf.SetBaseTmplPath("layout.html")
+}
+
+func NewController() *Controller {
+	c := &Controller{ksatriya.NewController()}
+
+	c.AddBeforeFilter(c.Before)
+	c.GET("/", c.Index)
+	c.GET("/user/:name", c.User)
+	c.GET("/text", c.Text)
+	c.GET("/json", c.JSON)
+	c.GET("/redirect", c.Redirect)
+	c.AddAfterFilter(c.After)
+
+	return c
 }
