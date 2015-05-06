@@ -35,7 +35,7 @@ func (c *Controller) Index(ctx *ksatriya.Context) {
 }
 
 func (c *Controller) User(ctx *ksatriya.Context) {
-	name := ctx.Param("name")
+	name := ctx.Arg("name")
 	ctx.HTML(http.StatusOK, "user.html", ksatriya.RenderArgs{
 		"name": name,
 	})
