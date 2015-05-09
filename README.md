@@ -12,7 +12,7 @@ $ go build
 $ ./ksatriya-sample
 ```
 
-Using [Server::Starter](http://search.cpan.org/~kazuho/Server-Starter-0.17/lib/Server/Starter.pm), you can restart the application gracefully.
+Using [go-server-starter](https://github.com/lestrrat/go-server-starter), you can restart the application gracefully.
 
 ``` sh
 $ start_server --port 8080 -- ./ksatriya-sample
