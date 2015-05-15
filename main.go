@@ -25,14 +25,15 @@ func main() {
 		}
 	}()
 
+	var l net.Listener
 	listeners, err := listener.ListenAll()
 	if err != nil {
-		panic(err)
-	}
-	var l net.Listener
-	if len(listeners) == 0 {
-		l, err = net.Listen("tcp", ":8080")
-		if err != nil {
+		if err == listener.ErrNoListeningTarget {
+			l, err = net.Listen("tcp", ":8080")
+			if err != nil {
+				panic(err)
+			}
+		} else {
 			panic(err)
 		}
 	} else {
