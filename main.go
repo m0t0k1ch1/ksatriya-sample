@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"net"
 	"os"
 	"os/signal"
@@ -31,10 +32,10 @@ func main() {
 		if err == listener.ErrNoListeningTarget {
 			l, err = net.Listen("tcp", ":8080")
 			if err != nil {
-				panic(err)
+				log.Fatal(err)
 			}
 		} else {
-			panic(err)
+			log.Fatal(err)
 		}
 	} else {
 		l = listeners[0]
