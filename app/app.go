@@ -6,13 +6,13 @@ import (
 )
 
 func New() *negroni.Negroni {
-	n := negroni.Classic()
-
 	k := ksatriya.New()
 	k.SetContextInitializer(func(ctx *ksatriya.Context) {
 		ctx.Stash["app_name"] = "ksatriya-sample"
 	})
 	k.RegisterController(NewController())
+
+	n := negroni.Classic()
 	n.UseHandler(k)
 
 	return n
