@@ -41,7 +41,7 @@ func (c *Controller) Redirect(ctx *ksatriya.Context) {}
 
 func (c *Controller) After(ctx *ksatriya.Context) {
 	v := ctx.View()
-	v.SetRenderArg("title", "ksatriya-sample")
+	v.SetRenderArg("title", ctx.Stash["app_name"])
 
 	conf := v.RenderConfig()
 	conf.SetTmplDirPath("app/view")
