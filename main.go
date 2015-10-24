@@ -12,7 +12,7 @@ import (
 )
 
 func main() {
-	app := ksatriyasample.NewApp()
+	app := app.New()
 
 	signalChan := make(chan os.Signal)
 	signal.Notify(signalChan, syscall.SIGTERM)

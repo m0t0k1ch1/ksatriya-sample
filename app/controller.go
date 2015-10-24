@@ -1,4 +1,4 @@
-package ksatriyasample
+package app
 
 import (
 	"net/http"
@@ -11,7 +11,7 @@ type Controller struct {
 }
 
 func (c *Controller) Before(ctx *ksatriya.Context) {
-	if ctx.Request().URL.Path == "/redirect" {
+	if ctx.Req().URL.Path == "/redirect" {
 		ctx.Redirect("/")
 	}
 }
