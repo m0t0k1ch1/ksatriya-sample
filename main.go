@@ -9,11 +9,10 @@ import (
 
 	"github.com/braintree/manners"
 	"github.com/lestrrat/go-server-starter/listener"
-	"github.com/m0t0k1ch1/ksatriya-sample/app"
 )
 
 func main() {
-	app := app.New()
+	app := NewApp()
 
 	signalChan := make(chan os.Signal)
 	signal.Notify(signalChan, syscall.SIGTERM)
