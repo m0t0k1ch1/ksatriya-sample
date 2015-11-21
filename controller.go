@@ -10,6 +10,12 @@ type Controller struct {
 	*ksatriya.Controller
 }
 
+func (c *Controller) BeforeHandler(ctx ksatriya.Ctx) {
+	if ctx.Req().URL.Path == "/redirect" {
+		ctx.Redirect("/")
+	}
+}
+
 func (c *Controller) IndexHandler(ctx ksatriya.Ctx) {
 	ctx.HTML(http.StatusOK, "index.html", nil)
 }
@@ -20,6 +26,8 @@ func (c *Controller) UserHandler(ctx ksatriya.Ctx) {
 		"name": name,
 	})
 }
+
+func (c *Controller) RedirectHandler(ctx ksatriya.Ctx) {}
 
 func (c *Controller) AfterHandler(ctx ksatriya.Ctx) {
 	v := ctx.View()
@@ -33,8 +41,10 @@ func (c *Controller) AfterHandler(ctx ksatriya.Ctx) {
 func NewController() *Controller {
 	c := &Controller{ksatriya.NewController()}
 
+	c.AddBeforeFilter(c.BeforeHandler)
 	c.GET("/", c.IndexHandler)
 	c.GET("/user/:name", c.UserHandler)
+	c.GET("/redirect", c.RedirectHandler)
 	c.AddAfterFilter(c.AfterHandler)
 
 	return c
