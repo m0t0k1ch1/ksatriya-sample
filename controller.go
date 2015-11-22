@@ -10,42 +10,18 @@ type Controller struct {
 	*ksatriya.Controller
 }
 
-func (c *Controller) BeforeHandler(ctx ksatriya.Ctx) {
-	if ctx.Req().URL.Path == "/redirect" {
-		ctx.Redirect("/")
-	}
+func (c *Controller) PingHandler(kctx ksatriya.Ctx) {
+	ctx := convertContext(kctx)
+	c.ping(ctx)
 }
-
-func (c *Controller) IndexHandler(ctx ksatriya.Ctx) {
-	ctx.HTML(http.StatusOK, "index.html", nil)
-}
-
-func (c *Controller) UserHandler(ctx ksatriya.Ctx) {
-	name := ctx.Arg("name")
-	ctx.HTML(http.StatusOK, "user.html", ksatriya.RenderArgs{
-		"name": name,
-	})
-}
-
-func (c *Controller) RedirectHandler(ctx ksatriya.Ctx) {}
-
-func (c *Controller) AfterHandler(ctx ksatriya.Ctx) {
-	v := ctx.View()
-	v.SetRenderArg("title", "ksatriya-sample")
-
-	conf := v.RenderConfig()
-	conf.SetTmplDirPath("view")
-	conf.SetBaseTmplPath("layout.html")
+func (c *Controller) ping(ctx *Context) {
+	ctx.JSON(http.StatusOK, NewResponse(ctx.conf.Message))
 }
 
 func NewController() *Controller {
 	c := &Controller{ksatriya.NewController()}
 
-	c.AddBeforeFilter(c.BeforeHandler)
-	c.GET("/", c.IndexHandler)
-	c.GET("/user/:name", c.UserHandler)
-	c.GET("/redirect", c.RedirectHandler)
-	c.AddAfterFilter(c.AfterHandler)
+	c.GET("/ping", c.PingHandler)
 
 	return c
 }
