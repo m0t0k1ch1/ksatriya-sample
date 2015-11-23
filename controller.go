@@ -15,7 +15,7 @@ func (c *Controller) PingHandler(kctx ksatriya.Ctx) {
 	c.ping(ctx)
 }
 func (c *Controller) ping(ctx *Context) {
-	ctx.JSON(http.StatusOK, NewResponse(ctx.conf.Message))
+	ctx.RenderJSON(http.StatusOK, NewResponse(ctx.conf.Message))
 }
 
 func NewController() *Controller {
