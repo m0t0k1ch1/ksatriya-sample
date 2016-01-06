@@ -6,8 +6,3 @@ type Context struct {
 	ksatriya.Ctx
 	conf *Config
 }
-
-func convertContext(kctx ksatriya.Ctx) *Context {
-	ctx, _ := kctx.(*Context)
-	return ctx
-}

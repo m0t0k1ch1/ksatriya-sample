@@ -6,6 +6,8 @@ import (
 	"github.com/m0t0k1ch1/ksatriya"
 )
 
+type HandlerFunc func(*Context)
+
 type MyKsatriya struct {
 	*ksatriya.Ksatriya
 	conf *Config
@@ -25,7 +27,7 @@ func New(confPath string) *MyKsatriya {
 	}
 
 	mk.SetCtxBuilder(mk.NewContext)
-	mk.RegisterController(NewController())
+	mk.RegisterController(NewAPIController())
 
 	return mk
 }
