@@ -13,7 +13,7 @@ func (c *APIController) Ping(ctx *Context) {
 func NewAPIController() *APIController {
 	c := &APIController{NewBaseController()}
 
-	c.AddMyRoute("GET", "/api/ping", c.Ping)
+	c.AddRoute("GET", "/api/ping", c.Ping)
 
 	return c
 }

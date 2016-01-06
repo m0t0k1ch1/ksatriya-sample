@@ -6,8 +6,8 @@ type BaseController struct {
 	*ksatriya.Controller
 }
 
-func (c *BaseController) AddMyRoute(method, path string, hf HandlerFunc) {
-	c.AddRoute(method, path, func(kctx ksatriya.Ctx) {
+func (c *BaseController) AddRoute(method, path string, hf HandlerFunc) {
+	c.Controller.AddRoute(method, path, func(kctx ksatriya.Ctx) {
 		ctx, _ := kctx.(*Context)
 		hf(ctx)
 	})
